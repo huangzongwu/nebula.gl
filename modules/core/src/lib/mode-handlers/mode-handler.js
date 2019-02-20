@@ -97,6 +97,17 @@ export class ModeHandler {
     return [];
   }
 
+  getSelectedFeaturesAsFeatureCollection(): FeatureCollection {
+    const { features } = this.featureCollection.getObject();
+    const selectedFeatures = this.getSelectedFeatureIndexes().map(
+      selectedIndex => features[selectedIndex]
+    );
+    return {
+      type: 'FeatureCollection',
+      features: selectedFeatures
+    };
+  }
+
   setFeatureCollection(featureCollection: FeatureCollection): void {
     this.featureCollection = new ImmutableFeatureCollection(featureCollection);
   }
